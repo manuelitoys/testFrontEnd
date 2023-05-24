@@ -1,12 +1,14 @@
-import { useState } from 'react'
 import './App.scss'
+import ItemList from './components/items/itemList/item-list'
+import Search from './components/search/search'
 
 function App() {
   
 
   return (
     <>
-      <h1>Hola Mundo</h1>
+      <Search />
+      <ItemList />
     </>
   )
 }

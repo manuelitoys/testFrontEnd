@@ -1,0 +1,9 @@
+//Abstracts
+@import './scss/abstracts/mixins', './scss/abstracts/variables';
+//Base
+@import './scss/base/base', './scss/base/resets';
+
+//Components
+@import './scss/components/search/search.scss';
+@import './scss/components/items/itemList/item-list.scss';
+@import './scss/components/items/itemDescription/item-description.scss';
