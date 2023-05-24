@@ -1,0 +1,25 @@
+.containerItemList{
+    background-color: $white;
+    max-width: $mw-large;
+}
+
+.card{
+    border-bottom: 1px solid $gray;
+    display: flex;
+    flex-direction: row;
+    padding: 20px 10px;
+    img{
+        flex: 1;
+    }
+    .title{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .price{
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .contentText{
+        flex: 6;
+    }
+}

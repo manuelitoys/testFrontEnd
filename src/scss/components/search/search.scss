@@ -1,0 +1,27 @@
+//Components - Search
+.containerSearch{
+    background-color: $yellow;
+    padding: 10px;
+    .row{
+        max-width: $mw-large;
+    }
+    .inputGroup{
+        display: flex;
+        position: relative;
+        &::before{
+            content: "\1F50E";
+            position: absolute;
+            right: 10px;
+            top: 3px;
+        }
+        .formControl{
+            padding-right: 40px;
+            border-radius: 4px;
+            box-shadow: 1px 1px 5px $gray;
+            width: 100%;
+            &::placeholder{
+                color: $gray;
+            }
+        }
+    }
+}

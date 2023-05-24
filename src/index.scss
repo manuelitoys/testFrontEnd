@@ -1,4 +1,28 @@
-//Abstracts
-@import './scss/abstracts/';
-//Base
-@import './scss/base';
+.container{
+    width: 100%;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    .col{
+        flex: 1;
+    }
+    .col-3{
+        flex: 3;
+    }
+    .col-6{
+        flex: 6;
+    }
+}
+.mx-auto{
+    margin: 0 auto;
+}
+
+.formControl{
+    border: 0;
+    padding: 10px;
+}
+
+
+//Components ItemsList
