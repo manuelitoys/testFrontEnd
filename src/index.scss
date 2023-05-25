@@ -8,11 +8,10 @@
     .col{
         flex: 1;
     }
-    .col-3{
-        flex: 3;
-    }
-    .col-6{
-        flex: 6;
+    @for $i from 2 through 12{
+        .col-#{$i}{
+            flex: $i;
+        }
     }
 }
 .mx-auto{

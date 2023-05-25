@@ -3,16 +3,23 @@
     background-color: $yellow;
     padding: 10px;
     .row{
-        max-width: $mw-large;
+        max-width: $mw-medium;
     }
     .inputGroup{
         display: flex;
         position: relative;
-        &::before{
-            content: "\1F50E";
+        .form{
+            width: 100%;
+        }
+        .btnSearch{
+            cursor: pointer;
             position: absolute;
             right: 10px;
-            top: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            &::before{
+                content: "\1F50E";
+            }
         }
         .formControl{
             padding-right: 40px;
