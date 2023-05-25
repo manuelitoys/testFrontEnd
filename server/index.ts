@@ -9,6 +9,9 @@ const app = express();
 
 app.use(express.static('public'));
 
+//Lectura parseo 
+app.use( express.json() );
+
 //? Routes
 app.use('/api/items', require('./routes/items'))
 
