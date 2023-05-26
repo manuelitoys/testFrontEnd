@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { useItems } from "../../hooks";
 
 const _logo: string  = 'https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.22.8/mercadolibre/logo__large_plus.png';
 
-const searchProduct = (search: string) => {
-    console.log(search);
-    //TODO: Captura de informacion del input y busqueda en API
-}
-
 const Search = () => {
 
-    const [ search, setSearch ] = useState('');
+    //* Hooks
+    const  [ search, useSearch ] = useState('');
+    const { searchItems } = useItems();
+    
+    const searchSubmbit = ( e: any ) => {
+        e.preventDefault();
+        searchItems({ search: search })
+    }
 
     return(
         <>
@@ -22,10 +25,7 @@ const Search = () => {
                         <div className="inputGroup">
                             <form 
                                 className="form"
-                                onSubmit={ e => {
-                                    e.preventDefault();
-                                    searchProduct(search);
-                                } }
+                                onSubmit={ searchSubmbit }
                                 >
                                 <input 
                                     className="formControl" 
@@ -33,7 +33,7 @@ const Search = () => {
                                     placeholder='Nunca dejes de buscar' 
                                     type="text" 
                                     value={ search }
-                                    onChange={ e => setSearch(e.target.value) }
+                                    onChange={ e => useSearch(e.target.value) }
                                     />
                                 <button 
                                     className="btnSearch" 
