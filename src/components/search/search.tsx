@@ -1,18 +1,25 @@
 import { useState } from "react";
 import { useItems } from "../../hooks";
+import ItemList from "../items/itemList/item-list";
 
 const _logo: string  = 'https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.22.8/mercadolibre/logo__large_plus.png';
 
 const Search = () => {
 
     //* Hooks
-    const  [ search, useSearch ] = useState('');
-    const { searchItems } = useItems();
+    const  [ search, setSearch ] = useState('');
+    const  [ resultItems, setResultItems ] = useState('');
+    const { searchItems } = useItems();   
+
+    let { items }: any =  resultItems
     
     const searchSubmbit = ( e: any ) => {
         e.preventDefault();
-        searchItems({ search: search })
+            searchItems({ search: search })
+                .then((e)=> setResultItems(e)) 
+        items = resultItems       
     }
+
 
     return(
         <>
@@ -33,7 +40,7 @@ const Search = () => {
                                     placeholder='Nunca dejes de buscar' 
                                     type="text" 
                                     value={ search }
-                                    onChange={ e => useSearch(e.target.value) }
+                                    onChange={ e => setSearch(e.target.value) }
                                     />
                                 <button 
                                     className="btnSearch" 
@@ -44,6 +51,13 @@ const Search = () => {
                     </div>
                 </div>
             </div>
+            {
+                 (items != null) &&  
+                    (items.length > 0) && <ItemList itemsList={ resultItems } />
+            }
+           
+            
+            
         </>
     )
 }

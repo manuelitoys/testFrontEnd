@@ -1,6 +1,6 @@
 .containerItemList{
     background-color: $white;
-    max-width: $mw-large;
+    max-width: $mw-medium;
 }
 
 .card{
@@ -8,18 +8,24 @@
     display: flex;
     flex-direction: row;
     padding: 20px 10px;
-    img{
+    .imgItem{
         flex: 1;
     }
-    .title{
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-    .price{
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-    .contentText{
+    .contentTextItem{
         flex: 6;
+        padding-left: 30px;
+        .titleItem{
+            font-size: 20px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            &:hover{
+                opacity: 0.7;
+            }
+        }
+        .priceItem{
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
     }
+    
 }

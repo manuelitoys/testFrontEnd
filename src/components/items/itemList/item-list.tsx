@@ -1,29 +1,67 @@
-function ItemList() {
-    return(
-        <>
-            <div className="container containerItemList mx-auto">
-                <div className="row">
-                    <div className="col">
-                        <div className="card">
-                            <img src="" alt="Image Example" />
-                            <div className="contentText">
-                                <div className="title">
-                                    Titulo Ejemplo
-                                </div>
-                                <div className="price">
-                                    $2000
-                                </div>
-                                <div className="shortDescription">
-                                    Occaecat dolor cillum cupidatat pariatur consequat nostrud adipisicing fugiat adipisicing cillum aliqua. Ad ex sit voluptate cillum laboris nisi aliqua tempor commodo eu aute dolor ut. 
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
+import { useState } from "react";
+import { useItemDescription } from "../../../hooks";
+import ItemDescription from "../itemDescription/item-description";
+
+
+function ItemList({ itemsList }: any) {
+
+    //*Hooks
+    const { itemDescription } = useItemDescription();
+    const [description, setDescription] = useState('')
+    const [ elemntDom, setElementDom] = useState(true)
+
+    const { items } = itemsList;
+
+    let desc: any = description
+     
+    const _description = async (id: string) => {
+        await itemDescription({ id: id })
+            .then((e) => {
+                setDescription(e)
+            })
+        setElementDom(false)
+        console.log(desc);
+    }
+
+    if(!elemntDom){
+        return(
+            <ItemDescription description={description} />
+        )
+    }else{
+        return (
+            <>
+                <div className="container containerItemList mx-auto">
+                    {
+    
+                        items.map(({ id, title, price, picture }: any, index: number) => {
+                            if (index < 4) {
+                                return (
+                                    <div className="row">
+                                        <div className="col">
+                                            <div className="card">
+                                                <img src={picture} alt="Image Example" className="imgItem" />
+                                                <div className="contentTextItem">
+                                                    <div className="titleItem" onClick={() => _description(id)} role="button">
+                                                        {title}
+                                                    </div>
+                                                    <div className="priceItem">
+                                                        {price.decimals}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })
+    
+                    }
                 </div>
-            </div>
-        </>
-    );
+            </>
+        );
+    }
+    
+
 }
 
 export default ItemList;
