@@ -14,6 +14,7 @@ const Search = () => {
     let { items }: any =  resultItems
     
     const searchSubmbit = ( e: any ) => {
+
         e.preventDefault();
             searchItems({ search: search })
                 .then((e)=> setResultItems(e)) 

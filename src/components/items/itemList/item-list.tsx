@@ -11,8 +11,6 @@ function ItemList({ itemsList }: any) {
     const [ elemntDom, setElementDom] = useState(true)
 
     const { items } = itemsList;
-
-    let desc: any = description
      
     const _description = async (id: string) => {
         await itemDescription({ id: id })
@@ -20,12 +18,11 @@ function ItemList({ itemsList }: any) {
                 setDescription(e)
             })
         setElementDom(false)
-        console.log(desc);
     }
 
     if(!elemntDom){
         return(
-            <ItemDescription description={description} />
+            <ItemDescription description={ description } />
         )
     }else{
         return (
@@ -36,7 +33,7 @@ function ItemList({ itemsList }: any) {
                         items.map(({ id, title, price, picture }: any, index: number) => {
                             if (index < 4) {
                                 return (
-                                    <div className="row">
+                                    <div className="row" key={index}>
                                         <div className="col">
                                             <div className="card">
                                                 <img src={picture} alt="Image Example" className="imgItem" />
@@ -45,7 +42,7 @@ function ItemList({ itemsList }: any) {
                                                         {title}
                                                     </div>
                                                     <div className="priceItem">
-                                                        {price.decimals}
+                                                       $ {price.decimals}
                                                     </div>
                                                 </div>
                                             </div>
