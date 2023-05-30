@@ -3,21 +3,21 @@ import { useItemDescription } from "../../../hooks";
 import ItemDescription from "../itemDescription/item-description";
 
 
-function ItemList({ itemsList }: any) {
+function ItemList({ itemsList, state }: any) {
 
     //*Hooks
     const { itemDescription } = useItemDescription();
     const [description, setDescription] = useState('')
-    const [ elemntDom, setElementDom] = useState(true)
+    const [ elemntDom, setElementDom] = useState(state)
 
-    const { items } = itemsList;
+    const { items } = itemsList; 
      
     const _description = async (id: string) => {
         await itemDescription({ id: id })
             .then((e) => {
                 setDescription(e)
             })
-        setElementDom(false)
+        setElementDom(!state)
     }
 
     if(!elemntDom){

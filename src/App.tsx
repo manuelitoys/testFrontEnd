@@ -1,12 +1,12 @@
 import './App.scss'
-import Search from './components/search/search'
+import { AppRouter } from './router/AppRouter'
 
 function App() {
   
 
   return (
     <>
-      <Search />
+      <AppRouter />
     </>
   )
 }

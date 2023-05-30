@@ -8,13 +8,15 @@ export const useItems = () => {
     const searchItems = async ( search: any ) => {
           
         try {
+
+            if(!search) return
             
             const resp = await itemsApi.post('/items', search);
 
             return resp.data;
 
-        } catch (error) {
-            console.log(error);
+        } catch (error: any) {
+            console.log('Message Error: ' + error.message, 'Code Error: '+error.code);
         }
     }
 
