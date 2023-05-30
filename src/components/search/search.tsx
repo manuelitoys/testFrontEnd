@@ -17,27 +17,42 @@ const Search = () => {
     const { search = '' } = queryString.parse( location.search )
     
     
-    const  [ resultItems, setResultItems ] = useState('');
+    const  [ resultItems, setResultItems ] = useState();
     const [ state, setState ] = useState(false);
     const { searchItems } = useItems();   
     const [searchItem, setSearchItem] = useState( '' )
 
-    
+    let reTest = resultItems
     
     
     const searchSubmbit = ( e: any ) => {
 
         e.preventDefault();
-        if ( searchItem.trim().length < 1 ) return
-        navigate(`/items?search=${ searchItem }`)
-        _searchItems( searchItem )
-        setState(true)   
+        console.log(searchItem);
+        
+        // if ( searchItem.trim().length < 1 ) return
+        // navigate(`/items?search=${ searchItem }`)
+        // _searchItems( searchItem )
+        searchItems( searchItem )
+            .then( ( e:any ) => { 
+                
+                setResultItems(e)
+                reTest = e
+                console.log(reTest);
+                setState(true)   
+                // {<ItemList itemsList={ e } state={ state } />}
+            }) 
     }
     
     const _searchItems = ( searchItem: any ) => 
     {   
+        console.log( searchItem );
+        
         searchItems( searchItem )
-            .then((e:any)=> setResultItems(e)) 
+            .then(( e:any )=> { 
+                console.log(e);
+                // setResultItems(e)
+            }) 
     }
 
     const _searchItemsPost = () => {
@@ -87,7 +102,7 @@ const Search = () => {
                 </div>
             </div>
             {
-                    (state) && <ItemList itemsList={ resultItems } state={ state } />
+                    (state) && <ItemList itemsList={ reTest } state={ state } />
             }
            
             

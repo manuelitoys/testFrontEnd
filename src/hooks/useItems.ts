@@ -8,8 +8,7 @@ export const useItems = () => {
     const searchItems = async ( search: any ) => {
           
         try {
-
-            if(!search) return
+            console.log(search);
             
             const resp = await itemsApi.post('/items', search);
 

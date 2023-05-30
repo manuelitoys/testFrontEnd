@@ -3,14 +3,18 @@ import { useItemDescription } from "../../../hooks";
 import ItemDescription from "../itemDescription/item-description";
 
 
-function ItemList({ itemsList, state }: any) {
+function ItemList( { itemsList }: any, state : any) {
 
     //*Hooks
     const { itemDescription } = useItemDescription();
     const [description, setDescription] = useState('')
     const [ elemntDom, setElementDom] = useState(state)
 
+    console.log(itemsList);
+    
     const { items } = itemsList; 
+    console.log(items);
+    
      
     const _description = async (id: string) => {
         await itemDescription({ id: id })
