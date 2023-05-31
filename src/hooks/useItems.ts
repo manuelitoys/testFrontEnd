@@ -8,7 +8,6 @@ export const useItems = () => {
     const searchItems = async ( search: any ) => {
           
         try {
-            console.log(search);
             
             const resp = await itemsApi.post('/items', search);
 

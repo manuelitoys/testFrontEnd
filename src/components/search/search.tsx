@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from "query-string";
 
 import { useItems } from "../../hooks";
 import ItemList from "../items/itemList/item-list";
-import { itemsApi } from "../../api";
 
 const _logo: string  = 'https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.22.8/mercadolibre/logo__large_plus.png';
 
@@ -13,64 +12,33 @@ const Search = () => {
     //* Hooks
     const navigate = useNavigate();
     const location = useLocation();  
-
     const { search = '' } = queryString.parse( location.search )
     
-    
-    const  [ resultItems, setResultItems ] = useState();
+    const  [ resultItems, setResultItems ] = useState('');
     const [ state, setState ] = useState(false);
     const { searchItems } = useItems();   
-    const [searchItem, setSearchItem] = useState( '' )
-
-    let reTest = resultItems
-    
+    const [searchItem, setSearchItem] = useState('')
     
     const searchSubmbit = ( e: any ) => {
-
         e.preventDefault();
-        console.log(searchItem);
-        
-        // if ( searchItem.trim().length < 1 ) return
-        // navigate(`/items?search=${ searchItem }`)
-        // _searchItems( searchItem )
-        searchItems( searchItem )
-            .then( ( e:any ) => { 
-                
-                setResultItems(e)
-                reTest = e
-                console.log(reTest);
-                setState(true)   
-                // {<ItemList itemsList={ e } state={ state } />}
-            }) 
+        _searchItems( searchItem )
+        navigate(`/items?search=${ searchItem }`)
     }
     
     const _searchItems = ( searchItem: any ) => 
-    {   
-        console.log( searchItem );
-        
-        searchItems( searchItem )
+    {    
+        if ( searchItem.trim().length < 1 ) return
+        searchItems( { search: searchItem } )
             .then(( e:any )=> { 
-                console.log(e);
-                // setResultItems(e)
+                setResultItems(e)
+                setState(true)
             }) 
     }
-
-    const _searchItemsPost = () => {
-        if( search ){
-            setTimeout(() => {
-                itemsApi.post('/items', search)
-                    .then(( { data }: any ) => {
-                        setResultItems(data);
-                        setState(true)
-                    })
-            }, 1000);
-            
-        }
-
-    }
-
-    _searchItemsPost()
     
+    useEffect(() => {
+        _searchItems( search )
+    }, [])
+
     return(
         <>
             <div className="container containerSearch">
@@ -102,7 +70,7 @@ const Search = () => {
                 </div>
             </div>
             {
-                    (state) && <ItemList itemsList={ reTest } state={ state } />
+                (state) && <ItemList itemsList={ resultItems } />
             }
            
             
