@@ -1,3 +1,4 @@
+/**Archivo para consulta de la URL de la API */
 import axios from 'axios';
 import { getEnvVariables } from '../helpers/getEnvVariables';
 

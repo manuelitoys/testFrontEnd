@@ -1,3 +1,4 @@
+/**Archivo de rutas */
 import { Route, Routes } from 'react-router-dom'
 
 import Search from '../components/search/search'

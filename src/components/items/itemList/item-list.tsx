@@ -1,22 +1,27 @@
+/** Item List:
+ * Componente para mostrar la lista de productos */
+
 import { useNavigate } from "react-router-dom";
 
 
 function ItemList( { itemsList }: any ) {    
 
-
+/** Si no hay items no renderiza nada */
     if(!itemsList){
         return( <></> )
     }
-
+/** Parametros recibidos del componente Search */
     let { items } = itemsList; 
     let navigate = useNavigate();
 
+    /** Dar formato de moneda al precio */
     const _format = new Intl.NumberFormat('en-EN',{
         style: 'currency',
         currency: 'USD',
         minimumFractionDigits: 2,
     })
      
+    /** Redirige a la ventana de descripción */
     const _description = (id: any) => {
         navigate(`/items/${ id }`)
     }

@@ -8,7 +8,7 @@ export const useItems = () => {
     const searchItems = async ( search: any ) => {
           
         try {
-            
+            /** Peticion a la API y respuesta de información */
             const resp = await itemsApi.post('/items', search);
 
             return resp.data;

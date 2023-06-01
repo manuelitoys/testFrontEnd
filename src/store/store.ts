@@ -1,3 +1,4 @@
+/**Configuración de Redux extraida directamente de la documentación */
 import { configureStore } from '@reduxjs/toolkit'
 import { itemsSlice } from './slices'
 

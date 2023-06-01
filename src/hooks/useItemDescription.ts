@@ -8,7 +8,7 @@ export const useItemDescription = () => {
     const itemDescription = async ( id: any ) => {
           
         try {
-            
+            /** Peticion a la API y respuesta de información */
             const resp = await itemsApi.post('/items/id', id);
             
             return resp.data;

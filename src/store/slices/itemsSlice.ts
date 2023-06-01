@@ -1,3 +1,4 @@
+/**Arhivo necesario para el correcto funcionamiento de Redux */
 import { createSlice } from '@reduxjs/toolkit'
 
 export interface itemsState {

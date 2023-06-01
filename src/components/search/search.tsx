@@ -1,3 +1,6 @@
+/** Search
+ * Componente para la busqueda de información
+ */
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from "query-string";
@@ -11,20 +14,22 @@ const Search = () => {
 
     //* Hooks
     const navigate = useNavigate();
-    const location = useLocation();  
+    const location = useLocation();  //Captura de parametros enviados por URL
     const { search = '' } = queryString.parse( location.search )
     
-    const  [ resultItems, setResultItems ] = useState('');
-    const [ state, setState ] = useState(false);
+    const  [ resultItems, setResultItems ] = useState(''); //Actualizar la busqueda
+    const [ state, setState ] = useState(false); //Renderizar el componente ItemList
     const { searchItems } = useItems();   
     const [searchItem, setSearchItem] = useState('')
     
+    /**Función para enviar los datos de busqueda a la API */
     const searchSubmbit = ( e: any ) => {
         e.preventDefault();
         _searchItems( searchItem )
         navigate(`/items?search=${ searchItem }`)
     }
     
+    /**Función que consulta la API */
     const _searchItems = ( searchItem: any ) => 
     {    
         if ( searchItem.trim().length < 1 ) return
@@ -34,7 +39,7 @@ const Search = () => {
                 setState(true)
             }) 
     }
-    
+    /**Permite renderizar el componente 1 vez */
     useEffect(() => {
         _searchItems( search )
     }, [])

@@ -1,3 +1,7 @@
+/** Item Description: 
+ * Componente para mostrar la información de un solo producto
+ */
+
 import { useParams } from "react-router-dom";
 import Search from "../../search/search";
 import { useEffect, useState } from "react";
@@ -6,8 +10,9 @@ import { useItemDescription } from "../../../hooks";
 function ItemDescription() {
 
     //*Hooks
-    const { id } = useParams();
-    const { itemDescription } = useItemDescription();
+    const { id } = useParams(); //Captura de parametros de URL
+    const { itemDescription } = useItemDescription(); //Captura de información
+    /** Hook del item para inicializarlo vacio */
     const [ _item, setItem ] = useState({
         title: '',
         description: '',
@@ -18,20 +23,20 @@ function ItemDescription() {
             decimals: ''
         }
     })
-
+/**Funcion que llama la infromación del producto */
     const _description = async ( id: any ) => {
         await itemDescription({ id: id })
                 .then((e) => {
                     setItem(e.item)
                 })
     }
-
+/**Dar formato de moneda al precio  */
     const _format = new Intl.NumberFormat('en-EN',{
         style: 'currency',
         currency: 'USD',
         minimumFractionDigits: 2,
     })
-
+/**Permite cargar el componente 1 vez */
     useEffect(() => {
         _description( id )
     }, [])
