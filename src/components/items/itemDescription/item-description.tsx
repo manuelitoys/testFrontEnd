@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Search from "../../search/search";
 import { useEffect, useState } from "react";
 import { useItemDescription } from "../../../hooks";
+import BreadCrump from "../breadcrump";
 
 function ItemDescription() {
 
@@ -36,6 +37,11 @@ function ItemDescription() {
         currency: 'USD',
         minimumFractionDigits: 2,
     })
+
+/**Capturar la categoria del producto */
+    const breadCrump = {
+        name: localStorage.getItem('breadCrump')
+    }
 /**Permite cargar el componente 1 vez */
     useEffect(() => {
         _description( id )
@@ -44,6 +50,7 @@ function ItemDescription() {
     return (
         <>
             <Search />
+            <BreadCrump breadCrump={ breadCrump } />
             <div className="container containerDescription">
                 <div className="row cardDescription">
                     <div className="col-8">
